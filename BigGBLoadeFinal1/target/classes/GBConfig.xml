@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./GradebookConfig.xsd">	
+	<testTypes dbAlias="common">
+		<!-- ETest Table -->
+		<testType name="elecj_set" schema="mfg_pms">
+			<table type="master">
+				<name>pwax_elecj_set</name>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_pad</name>
+				<keyword>elecj_pad</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_test</name>
+				<keyword>elecj_test</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_detail</name>
+				<keyword>elecj_detail</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_subfamily</name>
+				<keyword>elecj_subfamily</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_userinterface</name>
+				<keyword>elecj_userinterface</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_dtsr</name>
+				<keyword>elecj_dtsr</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_resistor</name>
+				<keyword name="keyword">elecj_resistor</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_pad_detail</name>
+				<keyword>elecj_pad_detail</keyword>
+			</table>
+			<table type="detail">
+				<name>pwax_elecj_fail</name>
+				<keyword>elecj_fail</keyword>
+			</table>
+		</testType>
+		<!-- Panther Table -->
+		<testType name="pwst_sample" schema="mfg_pms">
+			<table type="master">
+				<name>pwst_sample</name>
+			</table>
+			<table type="detail">
+				<name>pwst_variable_obj_meas</name>
+				<keyword>pwst_variable_obj_meas</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_part_obj</name>
+				<keyword>pwst_part_obj</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_part_detail</name>
+				<keyword>pwst_part_detail</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_obj_meas</name>
+				<keyword>pwst_obj_meas</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_nozzle_meas</name>
+				<keyword>pwst_nozzle_meas</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_instruction</name>
+				<keyword>pwst_instruction</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_drop_meas</name>
+				<keyword>pwst_drop_meas</keyword>
+			</table>
+			<table type="detail">
+				<name>pwst_anchor</name>
+				<keyword>pwst_anchor</keyword>
+			</table>
+		</testType>
+		<!-- Kahuna Table -->
+		<testType name="print_sample_suite">
+			<table type="master">
+				<name>print_sample_suite</name>
+			</table>
+			<table type="detail">
+				<name>print_sample_pen_dtl</name>
+				<keyword>print_sample_pen_dtl</keyword>
+			</table>
+			<table type="detail">
+				<name>print_sample_pen_data</name>
+				<keyword>print_sample_pen_data</keyword>
+			</table>
+			<table type="detail">
+				<name>print_sample_data</name>
+				<keyword>print_sample_data</keyword>
+			</table>
+		</testType>
+	</testTypes>
+	
+	<Data_source_id_fg>true</Data_source_id_fg>
+	<Data_source_id>2016-10-13</Data_source_id>
+	
+	<dataPartitioningState>true</dataPartitioningState>
+	<dataPartitioningCol>partition_dm</dataPartitioningCol>
+	
+	<!-- Under normal circumstances this value is "stamp" if the value not equal with "stamp" and is not empty the file must have the keyword equals with this value -->
+	<dataPartitioningFromcol>stamp</dataPartitioningFromcol>
+	<dataPartitioningDatepattern>yyyy-MM-dd</dataPartitioningDatepattern>
+	
+	<dateformat>yyyy-MM-dd</dateformat>
+	<datetimeformate>yyyy-MM-dd HH:mm:ss</datetimeformate>
+	<timestampformat>yyyy-MM-dd HH:mm:ss.SSSSS</timestampformat>
+	
+	<!--  <MaxLoaderNum>200</MaxLoaderNum> -->
+	<coalesceLoaderDBNum>5</coalesceLoaderDBNum>
+	<LimitOfParquetFileSize>300</LimitOfParquetFileSize>
+	
+	<dbConnection alias="vertica_dev">
+      	<param name = "dbDriverClass">com.vertica.jdbc.Driver</param>
+      	<param name = "dbURL">jdbc:vertica://g9t3223.houston.hp.com:5433/shr9_vrt_dev_003</param>
+      	<param name = "dbSchema">mfg_pms</param>
+      	<param name = "dbUser">srvc_mfg_pms_loader_dev</param>
+      	<param name = "dbEncryptedPassword">8ObtOgTL50GC</param>
+      	<param name = "autoCommit">false</param>
+    </dbConnection>
+	
+	<allTheInputdirPath>
+	  	<path name="Etest">/MANF/data/landing/eTest/</path>
+	  	<path name="Panther">/MANF/data/landing/Panther/</path>
+	  	<path name="Kahuna">/MANF/data/landing/Kahuna/</path>
+	</allTheInputdirPath>
+	
+	<needGenerateFile>
+	  	<filepath name="SUM_ERRORFILENAME">/MANF/ETest/parser/errorFile/HPETestError.log</filepath>
+	  	<filepath name="ERROR_FILEPATH">/MANF/ETest/parser/errorFile/</filepath>
+	  	<filepath name="NewFilePath">/MANF/data/outputdir/eTest</filepath>
+	  	<filepath name="GenerateFilePath">/opt/apps/MANF/ETest/Temp/path.location</filepath>
+	  	<filepath name="UnprocessedFilesPath">/opt/apps/MANF/ETest/Temp/UnprocessedFilesPath.log</filepath>
+	  	<filepath name="ExecuteFilePath">/opt/apps/MANF/ETest/Temp/ExecutePath.log</filepath>
+	  	<filepath name="BackFilePath">/opt/apps/MANF/ETest/backup/UnFinishedFilePath.log</filepath>
+	  	<filepath name="HPETestExceptionPath">/opt/apps/MANF/ETEST/logs/HPETestExceptionPath.log</filepath>
+	  	<filepath name="HPETestRejectPath">/opt/apps/MANF/ETEST/logs/HPETestRejectPath.log</filepath>
+	</needGenerateFile>
+	
+	<errorFileName>
+		<filename name="ERROR_IllegalCharacter">IllegalCharacter</filename>
+		<filename name="ERROR_AppearTwice">AppearTwice</filename>
+		<filename name="ERROR_ValueOfRawLoaderIncorrect">ValueOfRawLoaderIncorrect</filename>
+		<filename name="ERROR_DetailColumnNumIncorrect">DetailColumnNumIncorrect</filename>
+		<filename name="ERROR_DataPartitionStateValueIsFalse">DataPartitionStateValueIsFalse</filename>
+		<filename name="ERROR_NotFoundPartionDmOnTable">NotFoundPartionDmOnTable</filename>
+		<filename name="ERROR_TableNotContentAllFourKeyword">TableNotContentAllFourKeyword</filename>
+		<filename name="ERROR_PartitionFromcolValueNotFindInLittleFile">PartitionFromcolValueNotFindInLittleFile</filename>
+		<filename name="ERROR_NotEtestFile">NotEtestFile</filename>
+		<filename name="ERROR_StampValueIsNull">StampValueIsNull</filename>
+	</errorFileName>
+	
+</data>
